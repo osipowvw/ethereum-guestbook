@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethereum Guestbook</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="page">
+        <section class="card hero">
+            <div>
+                <p class="label">Ethereum + MetaMask + Ethers.js</p>
+                <h1>Децентрализованная книга сообщений</h1>
+                <p class="description">
+                    Простое веб-приложение отправляет сообщения в смарт-контракт Ethereum
+                    и читает сохраненные записи из блокчейна.
+                </p>
+            </div>
+            <button id="connectButton" class="primary-button">Подключить MetaMask</button>
+        </section>
+
+        <section class="card">
+            <h2>Настройки контракта</h2>
+            <p class="hint">
+                Сначала разверните EthereumGuestbook.sol в Remix, затем вставьте адрес контракта.
+            </p>
+            <div class="form-row">
+                <input id="contractAddress" type="text" placeholder="0x... адрес развернутого контракта" />
+                <button id="saveAddressButton">Сохранить</button>
+            </div>
+            <div class="info-grid">
+                <div>
+                    <span>Аккаунт</span>
+                    <strong id="accountValue">не подключен</strong>
+                </div>
+                <div>
+                    <span>Сеть</span>
+                    <strong id="networkValue">не определена</strong>
+                </div>
+                <div>
+                    <span>Баланс контракта</span>
+                    <strong id="balanceValue">0 ETH</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Новое сообщение</h2>
+            <textarea id="messageText" maxlength="280" placeholder="Введите сообщение до 280 символов"></textarea>
+            <div class="form-row">
+                <input id="ethAmount" type="number" min="0" step="0.0001" placeholder="ETH, необязательно" />
+                <button id="sendButton" class="primary-button">Отправить в блокчейн</button>
+            </div>
+            <p id="status" class="status">Готово к работе.</p>
+        </section>
+
+        <section class="card">
+            <div class="section-header">
+                <h2>Сообщения</h2>
+                <button id="refreshButton">Обновить</button>
+            </div>
+            <div id="messagesList" class="messages-list"></div>
+        </section>
+
+        <section class="card owner-card">
+            <h2>Действия владельца</h2>
+            <p class="hint">Вывод средств доступен только адресу, который развернул контракт.</p>
+            <button id="withdrawButton">Вывести ETH владельцу</button>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
